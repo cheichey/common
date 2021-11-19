@@ -6,8 +6,19 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class PacketTypeTest {
+    @Test
+    fun `check PacketType#id is not conflict`() {
+        val idList = mutableSetOf<Short>()
+        PacketType::class.sealedSubclasses.forEach {
+            val instance = it.objectInstance
+            assertNotNull(instance)
+            assertTrue(idList.add(instance.id), "PacketType#id is conflict. (${instance::class.java.simpleName})")
+        }
+    }
+
     @Test
     fun `GetVersionPacket can be converted`() {
         val packetType = PacketType.GetVersion
