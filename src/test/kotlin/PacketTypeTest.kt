@@ -1,4 +1,5 @@
 import com.github.cheatank.common.Packet
+import com.github.cheatank.common.PacketSender
 import com.github.cheatank.common.PacketType
 import com.github.cheatank.common.data.ByteData
 import com.github.cheatank.common.data.EmptyPacketData
@@ -16,6 +17,15 @@ class PacketTypeTest {
             val instance = it.objectInstance
             assertNotNull(instance)
             assertTrue(idList.add(instance.id), "PacketType#id is conflict. (${instance::class.java.simpleName})")
+        }
+    }
+
+    @Test
+    fun `PacketType#sender can be get`() {
+        PacketType::class.sealedSubclasses.forEach {
+            val instance = it.objectInstance
+            assertNotNull(instance)
+            assertTrue(instance::class.annotations.filterIsInstance<PacketSender>().isNotEmpty(), "PacketSender is not set. (${instance::class.java.simpleName})")
         }
     }
 
