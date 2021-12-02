@@ -1,5 +1,4 @@
 import com.github.cheatank.common.Packet
-import com.github.cheatank.common.PacketSender
 import com.github.cheatank.common.PacketType
 import com.github.cheatank.common.data.ByteData
 import com.github.cheatank.common.data.EmptyPacketData
@@ -7,30 +6,10 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 class PacketTypeTest {
     @Test
-    fun `check PacketType#id is not conflict`() {
-        val idList = mutableSetOf<Short>()
-        PacketType::class.sealedSubclasses.forEach {
-            val instance = it.objectInstance
-            assertNotNull(instance)
-            assertTrue(idList.add(instance.id), "PacketType#id is conflict. (${instance::class.java.simpleName})")
-        }
-    }
-
-    @Test
-    fun `PacketType#sender can be get`() {
-        PacketType::class.sealedSubclasses.forEach {
-            val instance = it.objectInstance
-            assertNotNull(instance)
-            assertTrue(instance::class.annotations.filterIsInstance<PacketSender>().isNotEmpty(), "PacketSender is not set. (${instance::class.java.simpleName})")
-        }
-    }
-
-    @Test
-    fun `GetVersionPacket can be converted`() {
+    fun GetVersionPacket_can_be_converted() {
         val packetType = PacketType.GetVersion
         assertEquals(0, packetType.id)
         val bytes = Packet.toByteArray(packetType, EmptyPacketData)
@@ -47,7 +26,7 @@ class PacketTypeTest {
     }
 
     @Test
-    fun `SendVersionPacket can be converted`() {
+    fun SendVersionPacket_can_be_converted() {
         val packetType = PacketType.SendVersion
         assertEquals(1, packetType.id)
         val bytes = Packet.toByteArray(packetType, ByteData(12))

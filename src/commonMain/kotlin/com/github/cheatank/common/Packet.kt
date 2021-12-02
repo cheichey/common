@@ -23,7 +23,6 @@ data class Packet<T : PacketData>(
             return RawPacket(array.readShort(0), array.readInt(2), array.copyOfRange(6, array.size))
         }
 
-
         fun <T : PacketData> toByteArray(type: PacketType<T>, data: T): ByteArray {
             val array = type.converter.toByteArray(data)
             return byteArrayOf(*type.id.bytes(), *array.size.bytes(), *array)
