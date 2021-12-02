@@ -1,7 +1,9 @@
 package com.github.cheatank.common
 
 import com.github.cheatank.common.data.PacketData
-import com.google.common.io.ByteStreams
+import com.github.cheatank.common.util.bytes
+import com.github.cheatank.common.util.readInt
+import com.github.cheatank.common.util.readShort
 
 /**
  * パケット
@@ -17,27 +19,14 @@ data class Packet<T : PacketData>(
         /**
          * [ByteArray] から [RawPacket] に変換する
          */
-        @Suppress("UnstableApiUsage")
         fun fromByteArray(array: ByteArray): RawPacket {
-            return ByteStreams.newDataInput(array).run {
-                val id = readShort()
-                val size = readInt()
-                RawPacket(id, size, ByteArray(size).apply { readFully(this) })
-            }
+            return RawPacket(array.readShort(0), array.readInt(2), array.copyOfRange(6, array.size))
         }
 
-        /**
-         * [PacketData] を [ByteArray] に変換する
-         */
-        @Suppress("UnstableApiUsage")
+
         fun <T : PacketData> toByteArray(type: PacketType<T>, data: T): ByteArray {
-            return ByteStreams.newDataOutput().apply {
-                writeShort(type.id.toInt())
-                type.converter.toByteArray(data).run {
-                    writeInt(size)
-                    write(this)
-                }
-            }.toByteArray()
+            val array = type.converter.toByteArray(data)
+            return byteArrayOf(*type.id.bytes(), *array.size.bytes(), *array)
         }
     }
 }
