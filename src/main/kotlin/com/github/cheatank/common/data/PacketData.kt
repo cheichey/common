@@ -7,7 +7,7 @@ sealed interface PacketData {
     /**
      * [PacketData] と [ByteArray] の変換を行うクラス
      */
-    interface Converter<T: PacketData> {
+    interface Converter<T : PacketData> {
         /**
          * [PacketData] を [ByteArray] に変換する
          */
