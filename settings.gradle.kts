@@ -1,2 +1,1 @@
-rootProject.name = "CheaTank-common"
-
+rootProject.name = "common"
