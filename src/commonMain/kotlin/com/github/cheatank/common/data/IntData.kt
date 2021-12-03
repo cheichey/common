@@ -12,8 +12,8 @@ data class IntData(val int: Int) : PacketData {
             return data.int.bytes()
         }
 
-        override fun fromByteArray(array: ByteArray): IntData {
-            return IntData(array.readInt(0))
+        override fun fromByteArray(array: ByteArray): IntData? {
+            return array.readInt(0)?.let(::IntData)
         }
     }
 }

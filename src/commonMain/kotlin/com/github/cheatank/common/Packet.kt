@@ -19,9 +19,8 @@ data class Packet<T : PacketData>(
          * [ByteArray] から [RawPacket] に変換する
          */
         fun fromByteArray(array: ByteArray): RawPacket? {
-            val arraySize = array.size
-            if (arraySize < 2) return null
-            return RawPacket(array.readShort(0), array.copyOfRange(2, arraySize))
+            val id = array.readShort(0) ?: return null
+            return RawPacket(id, array.copyOfRange(2, array.size))
         }
 
         fun <T : PacketData> toByteArray(type: PacketType<T>, data: T): ByteArray {
