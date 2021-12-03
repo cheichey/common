@@ -1,7 +1,7 @@
 import com.github.cheatank.common.Packet
 import com.github.cheatank.common.PacketType
-import com.github.cheatank.common.data.ByteData
 import com.github.cheatank.common.data.EmptyPacketData
+import com.github.cheatank.common.data.IntData
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -29,17 +29,17 @@ class PacketTypeTest {
     fun SendVersionPacket_can_be_converted() {
         val packetType = PacketType.SendVersion
         assertEquals(1, packetType.id)
-        val bytes = Packet.toByteArray(packetType, ByteData(12))
-        assertEquals(7, bytes.size)
+        val bytes = Packet.toByteArray(packetType, IntData(12))
+        assertEquals(10, bytes.size)
         val rawPacket = Packet.fromByteArray(bytes)
         assertEquals(1, rawPacket.id)
-        assertEquals(1, rawPacket.size)
-        assertEquals(1, rawPacket.array.size)
+        assertEquals(4, rawPacket.size)
+        assertEquals(4, rawPacket.array.size)
         val packet = rawPacket.toPacket(packetType)
         assertNotNull(packet)
         assertEquals(1, packet.type.id)
         val packetData = packet.data
-        assertIs<ByteData>(packetData)
-        assertEquals(12, packetData.byte)
+        assertIs<IntData>(packetData)
+        assertEquals(12, packetData.int)
     }
 }

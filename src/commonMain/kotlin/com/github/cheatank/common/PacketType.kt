@@ -1,7 +1,7 @@
 package com.github.cheatank.common
 
-import com.github.cheatank.common.data.ByteData
 import com.github.cheatank.common.data.EmptyPacketData
+import com.github.cheatank.common.data.IntData
 import com.github.cheatank.common.data.PacketData
 
 /**
@@ -21,5 +21,5 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
      * バージョンの送信
      */
     @PacketSender(PacketSenderType.Server)
-    object SendVersion : PacketType<ByteData>(1, ByteData)
+    object SendVersion : PacketType<IntData>(1, IntData)
 }
