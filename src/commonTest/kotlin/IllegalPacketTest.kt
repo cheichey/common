@@ -8,10 +8,6 @@ class IllegalPacketTest {
     fun too_short_ByteArray_is_null() {
         assertNull(Packet.fromByteArray(byteArrayOf()))
         assertNull(Packet.fromByteArray(byteArrayOf(0)))
-        assertNull(Packet.fromByteArray(byteArrayOf(0, 0)))
-        assertNull(Packet.fromByteArray(byteArrayOf(0, 0, 0)))
-        assertNull(Packet.fromByteArray(byteArrayOf(0, 0, 0, 0)))
-        assertNull(Packet.fromByteArray(byteArrayOf(0, 0, 0, 0, 0)))
-        assertNotNull(Packet.fromByteArray(byteArrayOf(0, 0, 0, 0, 0, 0)))
+        assertNotNull(Packet.fromByteArray(byteArrayOf(0, 0)))
     }
 }
