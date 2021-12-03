@@ -13,6 +13,11 @@ repositories {
 }
 
 kotlin {
+    jvm {
+    }
+    js(IR) {
+        browser()
+    }
     sourceSets {
         commonMain {
             dependencies {
@@ -24,11 +29,6 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(kotlin("reflect"))
             }
-        }
-        jvm {
-        }
-        js(IR) {
-            browser()
         }
     }
 }
