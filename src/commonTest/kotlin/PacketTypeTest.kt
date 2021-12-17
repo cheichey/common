@@ -48,16 +48,16 @@ class PacketTypeTest {
     fun SendConfigPacket_can_be_converted() {
         val packetType = PacketType.SendConfig
         val configData = ConfigData(3, 100)
-        assertEquals(5, packetType.id)
+        assertEquals(2, packetType.id)
         val bytes = Packet.toByteArray(packetType, configData)
         assertEquals(5, bytes.size)
         val rowPacket = Packet.fromByteArray(bytes)
         assertNotNull(rowPacket)
-        assertEquals(5, rowPacket.id)
+        assertEquals(2, rowPacket.id)
         assertEquals(3, rowPacket.array.size)
         val packet = rowPacket.toPacket(packetType)
         assertNotNull(packet)
-        assertEquals(5, packet.type.id)
+        assertEquals(2, packet.type.id)
         val packetData = packet.data
         assertIs<ConfigData>(packetData)
         assertEquals(3, packetData.lifeCount)
