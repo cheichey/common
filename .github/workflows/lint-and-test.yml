@@ -1,0 +1,32 @@
+name: Lint and test
+on:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Java 17 Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 17
+          cache: gradle
+      - name: Test
+        run: ./gradlew test
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 17
+          cache: gradle
+      - name: Lint
+        run: ./gradlew lintKotlin
