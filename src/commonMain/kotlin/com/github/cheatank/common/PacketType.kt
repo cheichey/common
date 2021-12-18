@@ -4,6 +4,7 @@ import com.github.cheatank.common.data.ConfigData
 import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
 import com.github.cheatank.common.data.PacketData
+import com.github.cheatank.common.data.UsersData
 
 /**
  * パケットの種類
@@ -29,4 +30,10 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
      */
     @PacketSender(PacketSenderType.Server)
     object SendConfig : PacketType<ConfigData>(2, ConfigData)
+
+    /**
+     * ゲームを開始
+     */
+    @PacketSender(PacketSenderType.Server)
+    object StartGame : PacketType<UsersData>(3, UsersData)
 }

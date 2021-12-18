@@ -3,6 +3,8 @@ import com.github.cheatank.common.PacketType
 import com.github.cheatank.common.data.ConfigData
 import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
+import com.github.cheatank.common.data.UserData
+import com.github.cheatank.common.data.UsersData
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -62,5 +64,27 @@ class PacketTypeTest {
         assertIs<ConfigData>(packetData)
         assertEquals(3, packetData.lifeCount)
         assertEquals(100, packetData.timeLimit)
+    }
+
+    @Test
+    fun GameStart_can_be_converted() {
+        val packetType = PacketType.StartGame
+        assertEquals(3, packetType.id)
+        val me = UserData(1, 2, 3, 4, 5)
+        val enemy = UserData(2, 5, 6, 7, 5)
+        val usersData = UsersData(me, enemy)
+        val bytes = Packet.toByteArray(packetType, usersData)
+        assertEquals(36, bytes.size)
+        val rowPacket = Packet.fromByteArray(bytes)
+        assertNotNull(rowPacket)
+        assertEquals(3, rowPacket.id)
+        assertEquals(34, rowPacket.array.size)
+        val packet = rowPacket.toPacket(packetType)
+        assertNotNull(packet)
+        assertEquals(3, packet.type.id)
+        val packetData = packet.data
+        assertIs<UsersData>(packetData)
+        assertEquals(me, packetData.me)
+        assertEquals(enemy, packetData.enemy)
     }
 }
