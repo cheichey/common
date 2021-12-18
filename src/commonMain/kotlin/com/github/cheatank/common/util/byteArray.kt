@@ -1,6 +1,6 @@
 package com.github.cheatank.common.util
 
-import com.github.cheatank.common.data.UserData
+import com.github.cheatank.common.data.PlayerData
 import kotlin.experimental.and
 
 /**
@@ -30,16 +30,16 @@ fun ByteArray.readInt(offset: Int): Int? {
     return read(4, offset)
 }
 /**
- * [ByteArray] から [UserData] のデータを取り出す。取り出せなければ null
+ * [ByteArray] から [PlayerData] のデータを取り出す。取り出せなければ null
  */
 
-fun ByteArray.readUserData(offset: Int): UserData? {
+fun ByteArray.readPlayerData(offset: Int): PlayerData? {
     val id = readInt(offset) ?: return null
     val xAxis = readInt(offset + 4) ?: return null
     val yAxis = readInt(offset + 8) ?: return null
     val direction = readInt(offset + 12) ?: return null
     val lifeCount = getOrNull(offset + 16) ?: return null
-    return UserData(id, xAxis, yAxis, direction, lifeCount)
+    return PlayerData(id, xAxis, yAxis, direction, lifeCount)
 }
 
 /**

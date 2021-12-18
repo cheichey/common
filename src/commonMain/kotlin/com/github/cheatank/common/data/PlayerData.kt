@@ -1,23 +1,23 @@
 package com.github.cheatank.common.data
 
 import com.github.cheatank.common.util.bytes
-import com.github.cheatank.common.util.readUserData
+import com.github.cheatank.common.util.readPlayerData
 
 /**
- * ユーザーの情報
+ * プレイヤーの情報
  *
- * @see com.github.cheatank.common.PacketType.StartGame
+ * @see com.github.cheatank.common.PacketType.SendPlayerData
  */
 
-data class UserData(
+data class PlayerData(
     val id: Int,
     val xAxis: Int,
     val yAxis: Int,
     val direction: Int,
     val lifeCount: Byte,
 ) : PacketData {
-    companion object : PacketData.Converter<UserData> {
-        override fun toByteArray(data: UserData): ByteArray {
+    companion object : PacketData.Converter<PlayerData> {
+        override fun toByteArray(data: PlayerData): ByteArray {
             return byteArrayOf(
                 *data.id.bytes(),
                 *data.xAxis.bytes(),
@@ -27,8 +27,8 @@ data class UserData(
             )
         }
 
-        override fun fromByteArray(array: ByteArray): UserData? {
-            return array.readUserData(0)
+        override fun fromByteArray(array: ByteArray): PlayerData? {
+            return array.readPlayerData(0)
         }
     }
 }
