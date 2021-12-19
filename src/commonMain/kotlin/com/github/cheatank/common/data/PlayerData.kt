@@ -11,7 +11,7 @@ import com.github.cheatank.common.util.readPlayerData
  * @property y y座標
  * @property direction 銃口の角度
  *
- * @see com.github.cheatank.common.PacketType.SendPlayerData
+ * @see com.github.cheatank.common.PacketType.SendPlayer
  */
 
 data class PlayerData(
