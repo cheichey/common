@@ -3,8 +3,8 @@ package com.github.cheatank.common
 import com.github.cheatank.common.data.ConfigData
 import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
+import com.github.cheatank.common.data.LocationData
 import com.github.cheatank.common.data.PacketData
-import com.github.cheatank.common.data.PlayerData
 
 /**
  * パケットの種類
@@ -32,10 +32,10 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
     object SendConfig : PacketType<ConfigData>(2, ConfigData)
 
     /**
-     * プレイヤーの情報を送信
+     * プレイヤーの位置情報を更新
      */
     @PacketSender(PacketSenderType.Server)
-    object SendPlayer : PacketType<PlayerData>(3, PlayerData)
+    object UpdateLocation : PacketType<LocationData>(3, LocationData)
 
     /**
      * ゲームの開始

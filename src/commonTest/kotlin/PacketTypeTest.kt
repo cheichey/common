@@ -3,7 +3,7 @@ import com.github.cheatank.common.PacketType
 import com.github.cheatank.common.data.ConfigData
 import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
-import com.github.cheatank.common.data.PlayerData
+import com.github.cheatank.common.data.LocationData
 import util.assertConvertedPacket
 import kotlin.test.Test
 
@@ -25,7 +25,7 @@ class PacketTypeTest {
 
     @Test
     fun SendPlayer_can_be_converted() {
-        assertConvertedPacket(PacketType.SendPlayer, PlayerData(1, 2, 3, 4), 16)
+        assertConvertedPacket(PacketType.UpdateLocation, LocationData(1, 2, 3, 4), 16)
     }
 
     @Test
