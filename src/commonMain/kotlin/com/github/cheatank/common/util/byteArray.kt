@@ -32,7 +32,6 @@ fun ByteArray.readInt(offset: Int): Int? {
 /**
  * [ByteArray] から [LocationData] のデータを取り出す。取り出せなければ null
  */
-
 fun ByteArray.readLocationData(offset: Int): LocationData? {
     val id = readShort(offset) ?: return null
     val x = readInt(offset + 2) ?: return null
