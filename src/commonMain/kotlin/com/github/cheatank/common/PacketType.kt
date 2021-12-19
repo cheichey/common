@@ -48,4 +48,10 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
      */
     @PacketSender(PacketSenderType.Server)
     object EndGame : PacketType<EmptyPacketData>(5, EmptyPacketData)
+
+    /**
+     * 待ち行列に参加
+     */
+    @PacketSender(PacketSenderType.Client)
+    object JoinQueue : PacketType<EmptyPacketData>(6, EmptyPacketData)
 }

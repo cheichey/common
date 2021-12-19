@@ -53,4 +53,11 @@ class PacketTypeTest {
         assertEquals(5, packetType.id)
         assertConvertedPacket(packetType, EmptyPacketData, 2)
     }
+
+    @Test
+    fun JoinQueue_can_be_converted() {
+        val packetType = PacketType.JoinQueue
+        assertEquals(6, packetType.id)
+        assertConvertedPacket(packetType, EmptyPacketData, 2)
+    }
 }
