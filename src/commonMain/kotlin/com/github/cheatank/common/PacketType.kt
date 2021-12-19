@@ -36,4 +36,16 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
      */
     @PacketSender(PacketSenderType.Server)
     object SendPlayerData : PacketType<PlayerData>(3, PlayerData)
+
+    /**
+     * ゲームの開始
+     */
+    @PacketSender(PacketSenderType.Server)
+    object StartGame : PacketType<EmptyPacketData>(4, EmptyPacketData)
+
+    /**
+     * ゲームの終了
+     */
+    @PacketSender(PacketSenderType.Server)
+    object EndGame : PacketType<EmptyPacketData>(5, EmptyPacketData)
 }

@@ -39,4 +39,18 @@ class PacketTypeTest {
         val playerData = PlayerData(1, 2, 3, 4, 5)
         assertConvertedPacket(packetType, playerData, 19)
     }
+
+    @Test
+    fun StartGame_can_be_converted() {
+        val packetType = PacketType.StartGame
+        assertEquals(4, packetType.id)
+        assertConvertedPacket(packetType, EmptyPacketData, 2)
+    }
+
+    @Test
+    fun EndGame_can_be_converted() {
+        val packetType = PacketType.EndGame
+        assertEquals(5, packetType.id)
+        assertConvertedPacket(packetType, EmptyPacketData, 2)
+    }
 }
