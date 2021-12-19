@@ -13,7 +13,6 @@ import com.github.cheatank.common.util.readLocationData
  *
  * @see com.github.cheatank.common.PacketType.UpdateLocation
  */
-
 data class LocationData(
     val id: Short,
     val x: Int,
