@@ -6,24 +6,27 @@ import com.github.cheatank.common.util.readPlayerData
 /**
  * プレイヤーの情報
  *
+ * @property id プレイヤーの識別子
+ * @property x x座標
+ * @property y y座標
+ * @property direction 銃口の角度
+ *
  * @see com.github.cheatank.common.PacketType.SendPlayerData
  */
 
 data class PlayerData(
-    val id: Int,
-    val xAxis: Int,
-    val yAxis: Int,
+    val id: Short,
+    val x: Int,
+    val y: Int,
     val direction: Int,
-    val lifeCount: Byte,
 ) : PacketData {
     companion object : PacketData.Converter<PlayerData> {
         override fun toByteArray(data: PlayerData): ByteArray {
             return byteArrayOf(
                 *data.id.bytes(),
-                *data.xAxis.bytes(),
-                *data.yAxis.bytes(),
+                *data.x.bytes(),
+                *data.y.bytes(),
                 *data.direction.bytes(),
-                data.lifeCount
             )
         }
 

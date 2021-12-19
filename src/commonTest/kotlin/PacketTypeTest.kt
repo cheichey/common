@@ -25,7 +25,7 @@ class PacketTypeTest {
 
     @Test
     fun SendPlayerData_can_be_converted() {
-        assertConvertedPacket(PacketType.SendPlayerData, PlayerData(1, 2, 3, 4, 5), 19)
+        assertConvertedPacket(PacketType.SendPlayerData, PlayerData(1, 2, 3, 4), 16)
     }
 
     @Test

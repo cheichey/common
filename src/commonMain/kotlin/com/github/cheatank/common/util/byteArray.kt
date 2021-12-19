@@ -34,12 +34,11 @@ fun ByteArray.readInt(offset: Int): Int? {
  */
 
 fun ByteArray.readPlayerData(offset: Int): PlayerData? {
-    val id = readInt(offset) ?: return null
-    val xAxis = readInt(offset + 4) ?: return null
-    val yAxis = readInt(offset + 8) ?: return null
-    val direction = readInt(offset + 12) ?: return null
-    val lifeCount = getOrNull(offset + 16) ?: return null
-    return PlayerData(id, xAxis, yAxis, direction, lifeCount)
+    val id = readShort(offset) ?: return null
+    val x = readInt(offset + 2) ?: return null
+    val y = readInt(offset + 6) ?: return null
+    val direction = readInt(offset + 10) ?: return null
+    return PlayerData(id, x, y, direction)
 }
 
 /**
